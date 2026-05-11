@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Produto</title>
+</head>
+
+<body>
+
+    <h1>Editar Produto</h1>
+
+    <form method="POST">
+
+        <label>Código:</label><br>
+        <input type="text"
+               name="codigo"
+               value="{{ produto[1] }}">
+        <br><br>
+
+        <label>Nome:</label><br>
+        <input type="text"
+               name="nome"
+               value="{{ produto[2] }}">
+        <br><br>
+
+        <label>Descrição:</label><br>
+        <input type="text"
+               name="descricao"
+               value="{{ produto[3] }}">
+        <br><br>
+
+        <label>Categoria:</label><br>
+
+        <select name="categoria">
+
+            <option {% if produto[4] == 'Ferramentas' %}selected{% endif %}>
+                Ferramentas
+            </option>
+
+            <option {% if produto[4] == 'Peças' %}selected{% endif %}>
+                Peças
+            </option>
+
+            <option {% if produto[4] == 'Eletrônicos' %}selected{% endif %}>
+                Eletrônicos
+            </option>
+
+            <option {% if produto[4] == 'Escritório' %}selected{% endif %}>
+                Escritório
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</body>
+
+</html>
