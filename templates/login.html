@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login Ultra</title>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+
+            font-family:Arial;
+        }
+
+        body{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            background:
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b,
+                #2563eb
+            );
+
+            overflow:hidden;
+        }
+
+        .login-box{
+
+            width:400px;
+
+            padding:40px;
+
+            border-radius:25px;
+
+            background:
+            rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(15px);
+
+            border:
+            1px solid rgba(255,255,255,0.1);
+
+            box-shadow:
+            0px 10px 40px rgba(0,0,0,0.4);
+
+            color:white;
+
+            animation: subir 1s ease;
+        }
+
+        @keyframes subir{
+
+            from{
+                transform:translateY(40px);
+                opacity:0;
+            }
+
+            to{
+                transform:translateY(0);
+                opacity:1;
+            }
+        }
+
+        .logo{
+
+            text-align:center;
+
+            margin-bottom:30px;
+        }
+
+        .logo i{
+
+            font-size:55px;
+
+            margin-bottom:15px;
+
+            color:#60a5fa;
+        }
+
+        .logo h1{
+
+            font-size:32px;
+        }
+
+        .input-box{
+
+            margin-bottom:20px;
+        }
+
+        .input-box label{
+
+            display:block;
+
+            margin-bottom:8px;
+
+            color:#cbd5e1;
+        }
+
+        .input-box input{
+
+            width:100%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:12px;
+
+            outline:none;
+
+            background:
+            rgba(255,255,255,0.08);
+
+            color:white;
+
+            font-size:15px;
+        }
+
+        .input-box input::placeholder{
+
+            color:#94a3b8;
+        }
+
+        button{
+
+            width:100%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#2563eb;
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            background:#3b82f6;
+        }
+
+        .rodape{
+
+            margin-top:20px;
+
+            text-align:center;
+
+            color:#94a3b8;
+
+            font-size:14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <form class="login-box" method="POST">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-box"></i>
+
+            <h1>Ultra</h1>
+
+        </div>
+
+        <div class="input-box">
+
+            <label>
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                name="usuario"
+                placeholder="Digite seu usuário"
+                required>
+
+        </div>
+
+        <div class="input-box">
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Digite sua senha"
+                required>
+
+        </div>
+
+        <button type="submit">
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            Entrar
+
+        </button>
+
+        <div class="rodape">
+
+            Catálogo Ultra © 2026
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

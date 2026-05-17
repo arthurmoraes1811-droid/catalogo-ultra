@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Cadastrar Produto</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+
+        <h1>Novo Produto</h1>
+
+        <p class="subtitulo">
+            Cadastre um novo item
+        </p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- CÓDIGO -->
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-barcode"></i>
+
+                <input
+                    type="text"
+                    name="codigo"
+                    placeholder="Código">
+
+            </div>
+
+            <!-- NOME -->
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-box"></i>
+
+                <input
+                    type="text"
+                    name="nome"
+                    placeholder="Nome do produto">
+
+            </div>
+
+            <!-- DESCRIÇÃO -->
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <input
+                    type="text"
+                    name="descricao"
+                    placeholder="Descrição">
+
+            </div>
+
+            <!-- CATEGORIA -->
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-tag"></i>
+
+                <select name="categoria">
+
+                    <option>Ferramentas</option>
+                    <option>Peças</option>
+                    <option>Eletrônicos</option>
+                    <option>Escritório</option>
+
+                </select>
+
+            </div>
+
+            <!-- UPLOAD -->
+
+            <label class="upload-label">
+                Imagem:
+            </label>
+
+            <div
+                class="upload-area"
+                id="uploadArea">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                <p>
+                    Arraste uma imagem
+                    ou clique aqui
+                </p>
+
+                <input
+                    type="file"
+                    name="imagem"
+                    id="imagemInput"
+                    accept="image/*"
+                    hidden>
+
+            </div>
+
+            <!-- PREVIEW -->
+
+            <img
+                id="preview"
+                style="
+                    width:220px;
+                    height:220px;
+                    margin-top:20px;
+                    border-radius:15px;
+                    display:none;
+                    object-fit:cover;
+                    box-shadow:0px 5px 20px rgba(0,0,0,0.4);
+                ">
+
+            <br><br>
+
+            <!-- BOTÃO -->
+
+            <button type="submit">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Salvar Produto
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        const uploadArea =
+            document.getElementById(
+                "uploadArea"
+            )
+
+        const inputImagem =
+            document.getElementById(
+                "imagemInput"
+            )
+
+        const preview =
+            document.getElementById(
+                "preview"
+            )
+
+        /* CLICK */
+
+        uploadArea.addEventListener(
+            "click",
+
+            () => {
+
+                inputImagem.click()
+
+            }
+        )
+
+        /* CHANGE */
+
+        inputImagem.addEventListener(
+            "change",
+
+            mostrarPreview
+        )
+
+        /* DRAG */
+
+        uploadArea.addEventListener(
+            "dragover",
+
+            (e) => {
+
+                e.preventDefault()
+
+                uploadArea.classList.add(
+                    "drag"
+                )
+
+            }
+        )
+
+        uploadArea.addEventListener(
+            "dragleave",
+
+            () => {
+
+                uploadArea.classList.remove(
+                    "drag"
+                )
+
+            }
+        )
+
+        uploadArea.addEventListener(
+            "drop",
+
+            (e) => {
+
+                e.preventDefault()
+
+                uploadArea.classList.remove(
+                    "drag"
+                )
+
+                inputImagem.files =
+                    e.dataTransfer.files
+
+                mostrarPreview()
+
+            }
+        )
+
+        /* PREVIEW */
+
+        function mostrarPreview(){
+
+            const arquivo =
+                inputImagem.files[0]
+
+            if(arquivo){
+
+                const reader =
+                    new FileReader()
+
+                reader.onload = function(e){
+
+                    preview.src =
+                        e.target.result
+
+                    preview.style.display =
+                        "block"
+                }
+
+                reader.readAsDataURL(
+                    arquivo
+                )
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catálogo Ultra</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span id="toast-text">
+            Ação realizada com sucesso
+        </span>
+
+    </div>
+
+    <!-- BOTÃO MENU -->
+
+    <button class="menu-btn" onclick="toggleMenu()">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar" id="sidebar">
+
+        <h2>
+            <i class="fa-solid fa-box"></i>
+            Ultra
+        </h2>
+
+        <a href="/">
+            <i class="fa-solid fa-house"></i>
+            <span>Início</span>
+        </a>
+
+        <a href="/cadastrar">
+            <i class="fa-solid fa-plus"></i>
+            <span>Novo Produto</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Dashboard</span>
+        </a>
+
+    <a href="/favoritos">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <span>Favoritos</span>
+
+    </a>
+
+        <a href="#" onclick="toggleTema()">
+
+            <i class="fa-solid fa-moon"></i>
+
+            <span>
+                Tema Escuro
+            </span>
+
+        </a>
+
+        <a href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Sair</span>
+        </a>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+
+    <div class="conteudo">
+
+        <!-- TOPO -->
+
+        <div class="topo">
+
+            <h1>
+                <i class="fa-solid fa-box"></i>
+                Catálogo Ultra
+            </h1>
+
+            <div class="acoes-topo">
+
+                <a class="botao-topo"
+                    href="/cadastrar">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Novo Produto
+
+                </a>
+
+                <a class="botao-topo sair"
+                    href="/logout">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Sair
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PAGINAÇÃO -->
+
+        <div class="paginacao">
+
+            {% if pagina > 1 %}
+
+            <a href="/?pagina={{ pagina - 1 }}">
+
+                ← Anterior
+
+            </a>
+
+            {% endif %}
+
+            <span>
+
+                Página {{ pagina }}
+                de
+                {{ total_paginas }}
+
+            </span>
+
+            {% if pagina < total_paginas %}
+
+            <a href="/?pagina={{ pagina + 1 }}">
+
+                Próxima →
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+        <!-- PAINEL ADMIN -->
+
+        <div class="admin-topo">
+
+            <div>
+
+                <h2>
+                    Bem-vindo, Admin 👋
+                </h2>
+
+                <p>
+                    Gerencie seu catálogo premium
+                </p>
+
+            </div>
+
+            <div class="relogio">
+
+                <i class="fa-regular fa-clock"></i>
+
+                <span id="hora"></span>
+
+            </div>
+
+        </div>
+
+        <!-- ESTATÍSTICAS -->
+
+        <div class="estatisticas">
+
+            <div class="estatistica-card">
+
+                <i class="fa-solid fa-cube"></i>
+
+                <div>
+
+                    <h3>
+                        {{ produtos|length }}
+                    </h3>
+
+                    <p>
+                        Produtos nesta página
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="estatistica-card">
+
+                <i class="fa-solid fa-folder"></i>
+
+                <div>
+
+                    <h3>
+                        {{ total_paginas }}
+                    </h3>
+
+                    <p>
+                        Total de páginas
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="estatistica-card">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <div>
+
+                    <h3 id="hora-card">
+                        --
+                    </h3>
+
+                    <p>
+                        Hora Atual
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PESQUISA -->
+
+        <form method="GET" class="barra-pesquisa">
+
+            <input type="text"
+                name="busca"
+                placeholder="Buscar produto ou código">
+
+            <button type="submit">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Buscar
+
+            </button>
+
+        </form>
+
+        <!-- DASHBOARD -->
+
+        <div class="dashboard">
+
+            <div class="dash-card">
+
+                <i class="fa-solid fa-box"></i>
+
+                <h2>{{ produtos|length }}</h2>
+
+                <p>Produtos</p>
+
+            </div>
+
+            <div class="dash-card">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <h2>4</h2>
+
+                <p>Categorias</p>
+
+            </div>
+
+            <div class="dash-card">
+
+                <i class="fa-solid fa-fire"></i>
+
+                <h2>Ultra</h2>
+
+                <p>Sistema</p>
+
+            </div>
+
+        </div>
+
+        <!-- FILTROS -->
+
+        <div class="filtros">
+
+            <a class="filtro-btn" href="/">
+                <i class="fa-solid fa-layer-group"></i>
+                Todos
+            </a>
+
+            <a class="filtro-btn"
+                href="/?categoria=Ferramentas">
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Ferramentas
+
+            </a>
+
+            <a class="filtro-btn"
+                href="/?categoria=Peças">
+
+                <i class="fa-solid fa-gears"></i>
+                Peças
+
+            </a>
+
+            <a class="filtro-btn"
+                href="/?categoria=Eletrônicos">
+
+                <i class="fa-solid fa-microchip"></i>
+                Eletrônicos
+
+            </a>
+
+            <a class="filtro-btn"
+                href="/?categoria=Escritório">
+
+                <i class="fa-solid fa-briefcase"></i>
+                Escritório
+
+            </a>
+
+        </div>
+
+        <!-- PRODUTOS -->
+
+        <div class="container">
+
+            {% for p in produtos %}
+
+            <div class="card">
+
+                <!-- FAVORITO -->
+        <a
+            href="/favoritar/{{ p[0] }}"
+            class="favorito-btn {% if p[6] == 1 %}ativo{% endif %}">
+
+            <i class="
+                    {% if p[6] == 1 %}
+                         fa-solid
+                    {% else %}
+                        fa-regular
+                    {% endif %}
+                        fa-heart">
+            </i>
+
+        </a>
+
+                <!-- PRODUTO -->
+
+                <a href="/produto/{{ p[0] }}"
+                    class="produto-link">
+
+                    <img
+                        src="{{ url_for('static', filename='imagens/' + p[5]) }}"
+                        alt="Produto">
+
+                    <h3>{{ p[2] }}</h3>
+
+                </a>
+
+                <p>
+                    <strong>
+                        <i class="fa-solid fa-barcode"></i>
+                        Código:
+                    </strong>
+
+                    {{ p[1] }}
+                </p>
+
+                <p>
+                    <strong>
+                        <i class="fa-solid fa-tag"></i>
+                        Categoria:
+                    </strong>
+
+                    {{ p[4] }}
+                </p>
+
+                <p>
+                    <strong>
+                        <i class="fa-solid fa-file-lines"></i>
+                        Descrição:
+                    </strong>
+
+                    {{ p[3] }}
+                </p>
+
+                <div class="acoes-card">
+
+                    <a class="botao"
+                        href="/editar/{{ p[0] }}">
+
+                        <i class="fa-solid fa-pen"></i>
+                        Editar
+
+                    </a>
+
+                    <button class="botao deletar"
+                        type="button"
+                        onclick="abrirModal('{{ p[0] }}')">
+
+                        <i class="fa-solid fa-trash"></i>
+                        Deletar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- MODAL -->
+
+    <div class="modal" id="modalDelete">
+
+        <div class="modal-box">
+
+            <i class="fa-solid fa-trash"></i>
+
+            <h2>
+                Deletar Produto
+            </h2>
+
+            <p>
+                Tem certeza que deseja deletar este produto?
+            </p>
+
+            <div class="modal-botoes">
+
+                <button
+                    class="cancelar"
+                    onclick="fecharModal()">
+
+                    Cancelar
+
+                </button>
+
+                <a
+                    id="btnDelete"
+                    class="confirmar"
+                    href="#">
+
+                    Deletar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FLASH -->
+
+    {% with messages = get_flashed_messages() %}
+
+    {% if messages %}
+
+    <script>
+
+        window.addEventListener(
+            "load",
+
+            function () {
+
+                mostrarToast(
+                    "{{ messages[0] }}"
+                )
+
+            }
+        )
+
+    </script>
+
+    {% endif %}
+
+    {% endwith %}
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        function toggleMenu() {
+
+            document
+                .getElementById("sidebar")
+                .classList
+                .toggle("active")
+
+        }
+
+        function atualizarRelogio() {
+
+            const agora = new Date()
+
+            const hora =
+                agora.toLocaleTimeString()
+
+            document
+                .getElementById("hora")
+                .innerHTML = hora
+
+            document
+                .getElementById("hora-card")
+                .innerHTML = hora
+        }
+
+        setInterval(
+            atualizarRelogio,
+            1000
+        )
+
+        atualizarRelogio()
+
+        function mostrarToast(texto) {
+
+            const toast =
+                document.getElementById("toast")
+
+            document
+                .getElementById("toast-text")
+                .innerHTML = texto
+
+            toast.classList.add("show")
+
+            setTimeout(() => {
+
+                toast.classList.remove("show")
+
+            }, 3000)
+        }
+
+        function toggleTema() {
+
+            document.body.classList.toggle(
+                "dark"
+            )
+
+            if (
+                document.body.classList.contains("dark")
+            ) {
+
+                localStorage.setItem(
+                    "tema",
+                    "dark"
+                )
+
+            } else {
+
+                localStorage.setItem(
+                    "tema",
+                    "light"
+                )
+            }
+        }
+
+        /* TEMA */
+
+        if (
+            localStorage.getItem("tema")
+            === "dark"
+        ) {
+
+            document.body.classList.add("dark")
+        }
+
+        /* TOAST */
+
+        window.onload = function () {
+
+            if (
+                !localStorage.getItem("boasVindas")
+            ) {
+
+                setTimeout(() => {
+
+                    mostrarToast(
+                        "Bem-vindo ao Catálogo Ultra 🚀"
+                    )
+
+                }, 1000)
+
+                localStorage.setItem(
+                    "boasVindas",
+                    "true"
+                )
+            }
+
+        }
+
+        /* MODAL */
+
+        function abrirModal(id) {
+
+            document
+                .getElementById("modalDelete")
+                .classList
+                .add("active")
+
+            document
+                .getElementById("btnDelete")
+                .href = "/deletar/" + id
+        }
+
+        function fecharModal() {
+
+            document
+                .getElementById("modalDelete")
+                .classList
+                .remove("active")
+        }
+    </script>
+
+</body>
+
+</html>

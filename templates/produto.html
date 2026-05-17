@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{ produto[2] }}</title>
+
+    <link rel="stylesheet"
+    href="/static/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body class="login-body">
+
+    <div class="produto-view">
+
+        <img
+            src="{{ url_for('static', filename='imagens/' + produto[5]) }}"
+            class="produto-img">
+
+        <div class="produto-info">
+
+            <h1>
+                {{ produto[2] }}
+            </h1>
+
+            <p>
+
+                <strong>
+                    Código:
+                </strong>
+
+                {{ produto[1] }}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Categoria:
+                </strong>
+
+                {{ produto[4] }}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Descrição:
+                </strong>
+
+                {{ produto[3] }}
+
+            </p>
+
+            <div class="produto-botoes">
+
+                <a
+                    href="/editar/{{ produto[0] }}"
+                    class="botao">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Editar
+
+                </a>
+
+                <a
+                    href="/"
+                    class="botao voltar">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Voltar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

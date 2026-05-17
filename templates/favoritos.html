@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Favoritos</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="conteudo">
+
+        <div class="topo">
+
+            <h1>
+                <i class="fa-solid fa-heart"></i>
+                Produtos Favoritos
+            </h1>
+
+            <a class="botao-topo" href="/">
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar
+            </a>
+
+        </div>
+
+        <div class="container">
+
+            {% for p in produtos %}
+
+            <div class="card">
+
+                <a href="/produto/{{ p[0] }}"
+                   class="produto-link">
+
+                    <img
+                        src="{{ url_for('static', filename='imagens/' + p[5]) }}">
+
+                    <h3>{{ p[2] }}</h3>
+
+                </a>
+
+                <p>
+                    <strong>Código:</strong>
+                    {{ p[1] }}
+                </p>
+
+                <p>
+                    <strong>Categoria:</strong>
+                    {{ p[4] }}
+                </p>
+
+                <p>
+                    <strong>Descrição:</strong>
+                    {{ p[3] }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
