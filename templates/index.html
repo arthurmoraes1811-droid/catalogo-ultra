@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="pt-br">
 
 <head>
@@ -7,16 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Catálogo Ultra</title>
+=======
+<html>
+
+<head>
+
+    <title>Catálogo</title>
+>>>>>>> e73d3ecf75c42b0d6f79dc4abf8c10255130b244
 
     <link rel="stylesheet" href="/static/style.css">
 
     <link rel="stylesheet"
+<<<<<<< HEAD
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+=======
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+>>>>>>> e73d3ecf75c42b0d6f79dc4abf8c10255130b244
 
 </head>
 
 <body>
 
+<<<<<<< HEAD
     <!-- TOAST -->
 
     <div class="toast" id="toast">
@@ -426,10 +439,38 @@
 
             {% endfor %}
 
+=======
+    <!-- TOPO -->
+
+    <div class="topo">
+
+        <h1>
+            <i class="fa-solid fa-box"></i>
+            Catálogo Ultra
+        </h1>
+
+        <div class="acoes-topo">
+
+            <a class="botao-topo"
+               href="/cadastrar">
+
+               <i class="fa-solid fa-plus"></i>
+               Novo Produto
+            </a>
+
+            <a class="botao-topo sair"
+               href="/logout">
+
+               <i class="fa-solid fa-right-from-bracket"></i>
+               Sair
+            </a>
+
+>>>>>>> e73d3ecf75c42b0d6f79dc4abf8c10255130b244
         </div>
 
     </div>
 
+<<<<<<< HEAD
     <!-- MODAL -->
 
     <div class="modal" id="modalDelete">
@@ -632,6 +673,135 @@
         }
     </script>
 
+=======
+    <!-- BARRA DE PESQUISA -->
+
+    <form method="GET" class="barra-pesquisa">
+
+        <input type="text"
+               name="busca"
+               placeholder="Buscar produto ou código">
+
+        <button type="submit">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Buscar
+
+        </button>
+
+    </form>
+
+    <!-- FILTROS -->
+
+    <div class="filtros">
+
+        <a class="filtro-btn" href="/">
+            <i class="fa-solid fa-layer-group"></i>
+            Todos
+        </a>
+
+        <a class="filtro-btn"
+           href="/?categoria=Ferramentas">
+
+           <i class="fa-solid fa-screwdriver-wrench"></i>
+           Ferramentas
+        </a>
+
+        <a class="filtro-btn"
+           href="/?categoria=Peças">
+
+           <i class="fa-solid fa-gears"></i>
+           Peças
+        </a>
+
+        <a class="filtro-btn"
+           href="/?categoria=Eletrônicos">
+
+           <i class="fa-solid fa-microchip"></i>
+           Eletrônicos
+        </a>
+
+        <a class="filtro-btn"
+           href="/?categoria=Escritório">
+
+           <i class="fa-solid fa-briefcase"></i>
+           Escritório
+        </a>
+
+    </div>
+
+    <!-- PRODUTOS -->
+
+    <div class="container">
+
+        {% for p in produtos %}
+
+        <div class="card">
+
+            <img
+                src="{{ url_for('static', filename='imagens/' + p[5]) }}"
+                style="
+                    width:180px;
+                    height:180px;
+                    object-fit:cover;
+                    border-radius:10px;
+                ">
+
+            <h3>{{ p[2] }}</h3>
+
+            <p>
+                <strong>
+                    <i class="fa-solid fa-barcode"></i>
+                    Código:
+                </strong>
+
+                {{ p[1] }}
+            </p>
+
+            <p>
+                <strong>
+                    <i class="fa-solid fa-tag"></i>
+                    Categoria:
+                </strong>
+
+                {{ p[4] }}
+            </p>
+
+            <p>
+                <strong>
+                    <i class="fa-solid fa-file-lines"></i>
+                    Descrição:
+                </strong>
+
+                {{ p[3] }}
+            </p>
+
+            <br>
+
+            <a class="botao"
+               href="/editar/{{ p[0] }}">
+
+               <i class="fa-solid fa-pen"></i>
+               Editar
+
+            </a>
+
+            <a class="botao deletar"
+                href="/deletar/{{ p[0] }}"
+                onclick="return confirm('Tem certeza que deseja deletar este produto?')">
+
+                <i class="fa-solid fa-trash"></i>
+                Deletar
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+>>>>>>> e73d3ecf75c42b0d6f79dc4abf8c10255130b244
 </body>
 
 </html>
